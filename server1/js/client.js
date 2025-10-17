@@ -32,7 +32,18 @@ class DatabaseClient {
   }
 
   async sendGet(query, elementId) {
-    // TODO
+    try {
+      const url = `${this.apiBase}${encodeURIComponent(query)}`;
+      const response = await fetch(url, {
+        method: "GET"
+      })
+      const data = await response.json();
+      this.displayResponse(elementId, data);
+
+    } catch (err) {
+      console.error(this.msg.insertError, err);
+      alert(this.msg.insertError);
+    }
   }
 
   async sendPost(query, elementId) {

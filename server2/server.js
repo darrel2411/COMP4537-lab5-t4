@@ -12,8 +12,19 @@ class ApiServer {
     this.routePrefix = STRINGS.server.routePrefix;
   }
 
-  handleGet(req, res, sqlQuery) {
-    // TODO
+  handleGet(req, res, sqlQuery = "") {
+    try {
+      this.db.query(sqlQuery, (err, result) => {
+        if (err) {
+          res.end(JSON.stringify({ error: err.message }));
+        } else {
+          // console.log(result)
+          res.end(JSON.stringify({ success: true, result }));
+        }
+      });
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   handlePost(req, res) {
@@ -60,7 +71,11 @@ class ApiServer {
 
     if (path.startsWith(this.routePrefix)) {
       if (req.method === "GET") {
-        // TODO
+        const encodedSql = path.slice(this.routePrefix.length);
+        const sql = decodeURIComponent(encodedSql);
+        this.handleGet(req, res, sql);
+
+
       } else if (req.method === "POST") {
         this.handlePost(req, res);
       } else {
