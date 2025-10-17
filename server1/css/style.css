@@ -1,0 +1,84 @@
+/* ====== General Page Setup ====== */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 40px;
+}
+
+/* Center main content */
+h1 {
+  text-align: center;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+/* ====== Buttons ====== */
+button {
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #005ea2;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ====== Query Section ====== */
+textarea {
+  width: 100%;
+  max-width: 600px;
+  height: 100px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 14px;
+  resize: vertical;
+}
+
+h3 {
+  margin-top: 30px;
+  color: #444;
+}
+
+/* ====== Responses ====== */
+#insertResponse,
+#queryResponse {
+  display: block;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  white-space: pre-wrap;
+  font-family: Consolas, monospace;
+  font-size: 13px;
+  color: #222;
+  max-width: 600px;
+}
+
+/* Add spacing between sections */
+hr {
+  margin: 40px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+/* Center everything on wide screens */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
