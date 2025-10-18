@@ -38,11 +38,17 @@ class DatabaseClient {
         method: "GET"
       })
       const data = await response.json();
-      this.displayResponse(elementId, data);
 
+      // if found error
+      if (!response.ok) {
+        this.displayResponse(elementId, data.error);
+        return;
+      }
+      // if success
+      this.displayResponse(elementId, data);
     } catch (err) {
-      console.error(this.msg.insertError, err);
-      alert(this.msg.insertError);
+      console.error(this.msg.getError, err);
+      alert(this.msg.getError);
     }
   }
 

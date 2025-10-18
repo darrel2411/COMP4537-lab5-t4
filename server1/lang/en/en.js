@@ -11,6 +11,7 @@ const MESSAGES = {
   },
   responses: {
     insertSuccess: "Insert request sent successfully.",
-    insertError: "Error inserting patients."
+    insertError: "Error inserting patients.",
+    getError: "Error get method"
   }
 };
