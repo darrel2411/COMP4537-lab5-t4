@@ -4,6 +4,7 @@ const http = require("http");
 const url = require("url");
 const Database = require("./db");
 const STRINGS = require("./lang/en/en.js");
+const { mysqlErrToStatus } = require("./utils/utils.js");
 
 class ApiServer {
   constructor() {
@@ -12,19 +13,32 @@ class ApiServer {
     this.routePrefix = STRINGS.server.routePrefix;
   }
 
+
   handleGet(req, res, sqlQuery = "") {
-    try {
-      this.db.query(sqlQuery, (err, result) => {
-        if (err) {
-          res.end(JSON.stringify({ error: err.message }));
-        } else {
-          // console.log(result)
-          res.end(JSON.stringify({ success: true, result }));
-        }
-      });
-    } catch (err) {
-      console.log(err)
+    if (!sqlQuery) {
+      res.writeHead(400, {
+        ok: false,
+        error: STRINGS.messages.restrictedGetQuery
+      })
     }
+
+    this.db.query(sqlQuery, (err, result) => {
+      if (err) {
+        const statusCode = mysqlErrToStatus(err);
+        res.writeHead(statusCode, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({
+          ok: false,
+          error: err.sqlMessage,
+          errno: err.errno,
+          code: err.code,
+          sqlState: err.sqlState,
+          sql: err.sql
+        }));
+      } else {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ ok: true, result }));
+      }
+    });
   }
 
   handlePost(req, res) {
@@ -74,8 +88,6 @@ class ApiServer {
         const encodedSql = path.slice(this.routePrefix.length);
         const sql = decodeURIComponent(encodedSql);
         this.handleGet(req, res, sql);
-
-
       } else if (req.method === "POST") {
         this.handlePost(req, res);
       } else {

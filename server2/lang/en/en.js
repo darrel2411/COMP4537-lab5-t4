@@ -17,7 +17,10 @@ const STRINGS = {
     invalidEndpoint: "404 not found",
     restrictedQuery: "UPDATE/DROP not allowed",
     invalidJson: "Invalid JSON or query",
+    missingSqlQuery: "Missing SQL query",
+    restrictedGetQuery: "Only SELECT is allowed via GET"
   },
 };
+
 
 module.exports = STRINGS;
