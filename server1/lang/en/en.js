@@ -7,7 +7,8 @@ const MESSAGES = {
     textareaPlaceholder: "Type SELECT or INSERT query here"
   },
   api: {
-    baseUrl: "http://localhost:8081/lab5/api/v1/sql/"
+    // baseUrl: "http://localhost:8081/lab5/api/v1/sql/"
+    baseUrl: "https://comp4537-lab5-t4.onrender.com/lab5/api/v1/sql/"
   },
   responses: {
     insertSuccess: "Insert request sent successfully.",
