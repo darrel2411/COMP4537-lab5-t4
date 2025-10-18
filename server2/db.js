@@ -11,6 +11,7 @@ class Database {
       user: STRINGS.db.user,
       password: STRINGS.db.password,
       database: STRINGS.db.database,
+      ssl: {}
     });
 
     this.initialize();
