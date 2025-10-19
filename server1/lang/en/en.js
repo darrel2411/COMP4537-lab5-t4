@@ -14,5 +14,8 @@ const MESSAGES = {
     insertSuccess: "Insert request sent successfully.",
     insertError: "Error inserting patients.",
     getError: "Error get method"
+  },
+  alert: {
+    queriesRestriction: "Only SELECT or INSERT queries are allowed!"
   }
 };

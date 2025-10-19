@@ -27,7 +27,7 @@ class DatabaseClient {
     } else if (query.toLowerCase().startsWith("insert")) {
       this.sendPost(query, "queryResponse");
     } else {
-      alert("Only SELECT or INSERT queries are allowed!");
+      alert(MESSAGES.alert.queriesRestriction);
     }
   }
 
