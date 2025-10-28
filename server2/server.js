@@ -23,6 +23,7 @@ class ApiServer {
     }
 
     this.db.query(sqlQuery, (err, result) => {
+      console.log(result)
       if (err) {
         const statusCode = mysqlErrToStatus(err);
         res.writeHead(statusCode, { "Content-Type": "application/json" });
@@ -75,7 +76,7 @@ class ApiServer {
     res.setHeader("Content-Type", "application/json");
 
     const parsedUrl = url.parse(req.url, true);
-    const path = parsedUrl.pathname;
+    const path = parsedUrl.pathname; // "/path_name"
 
     if (req.method === "OPTIONS") {
       res.writeHead(204);
@@ -85,8 +86,8 @@ class ApiServer {
 
     if (path.startsWith(this.routePrefix)) {
       if (req.method === "GET") {
-        const encodedSql = path.slice(this.routePrefix.length);
-        const sql = decodeURIComponent(encodedSql);
+        const encodedSql = path.slice(this.routePrefix.length); // select%20*%20from%20patient
+        const sql = decodeURIComponent(encodedSql); // select * from patient
         this.handleGet(req, res, sql);
       } else if (req.method === "POST") {
         this.handlePost(req, res);

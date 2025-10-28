@@ -56,7 +56,7 @@ class DatabaseClient {
     try {
       const response = await fetch(this.apiBase, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" }, // tells server the body is JSON
         body: JSON.stringify({ query })
       });
       const data = await response.json();

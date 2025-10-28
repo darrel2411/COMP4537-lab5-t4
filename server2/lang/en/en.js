@@ -14,7 +14,6 @@ const STRINGS = {
     port: 4000,
     user: "3QXpxtYnGQSgzUh.root",
     password: "8cfv2QBN9j9Y1TTK",
-    // database: "test",
     connectSuccess: "Connected to MySQL",
     tableReady: "patient table ready",
   },
